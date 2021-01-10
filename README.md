@@ -9,3 +9,7 @@ Open your terminal and enter npm install followed by ng serve. App will start ru
 # Libraries used
 
 Bootstrap, ngx-toastr, Mdbootstrap, jquery, font-awesome, Angular Material
+
+# Logos and Icons
+
+https://editor.freelogodesign.org to create a logo and https://www.flaticon.com/ for icons
