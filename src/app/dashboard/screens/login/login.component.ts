@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     if(!!JSON.parse(localStorage.getItem('user'))) {
       this._route.navigate(['/home']);
     }
+    
   }
   onSubmit(form:NgForm) {
    
