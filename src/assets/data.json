@@ -1,11 +1,10 @@
 {
 
   "credentials":{
-    "username" : "Manish",
+    "email" : "jatin4.kumar@gmail.com",
     "password" : "Manish"
   },
   "blog":[
-     "This is my first log brother.............!"
   ]
 
 }

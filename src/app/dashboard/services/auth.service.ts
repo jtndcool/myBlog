@@ -24,22 +24,22 @@ export class AuthService {
     );
 
   }
-  signUp(payload:signupPayload) {
-    return this._http.post<any>(environment.baseUrl+"sign_up", payload, {observe: 'response'}).pipe(timeout(5000),
+  // signUp(payload:signupPayload) {
+  //   return this._http.post<any>(environment.baseUrl+"sign_up", payload, {observe: 'response'}).pipe(timeout(5000),
 
-      catchError(this.handleError)
-    );
+  //     catchError(this.handleError)
+  //   );
 
-  }
+  // }
   private handleError(httpError: HttpErrorResponse) {
     return throwError("An unknown Error Occured");
   }
   autoLogin() {
-  // //  const userInfo = JSON.parse(localStorage.getItem('user'));
-  //   if(!userInfo) {
-  //     return;
-  //   }
-  //   const user = new User(userInfo);
-  //   this.user.next(user);
+    const userInfo = JSON.parse(localStorage.getItem('user'));
+    if(!userInfo) {
+      return;
+    }
+    const user = new User(userInfo);
+    this.user.next(user);
   }
 }

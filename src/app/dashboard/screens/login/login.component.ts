@@ -17,35 +17,43 @@ export class LoginComponent implements OnInit {
 
   error:any;
   isLoading:boolean = false;
-  email_id:String;
-  password:String;
   loginInfo:loginPayload;
   constructor(private _authService:AuthService, private _route:Router, private _notification:NotificationService) { }
 
   ngOnInit(): void {
-    // if(!!JSON.parse(localStorage.getItem('user'))) {
-    //   this._route.navigate(['/home']);
-    // }
+    if(!!JSON.parse(localStorage.getItem('user'))) {
+      this._route.navigate(['/blog']);
+    }
 
   }
   onSubmit(form:NgForm) {
 
     this.loginInfo = form.value;
-
+    console.log("-----",form.value);
     let loginObs: Observable<any>;
     loginObs = this._authService.login(this.loginInfo);
     this.isLoading=true;
     loginObs.subscribe(
       data=>{
-        if(data) {
+       
+        if(data?.credentials?.email==form.value.email_id && data?.credentials?.password==form.value.password) {
           console.log("---------------------", data);
-          // const user = new User(data.email_id);
-          // this._authService.user.next(user);
-          // localStorage.setItem('user', JSON.stringify(user.email_id));
-          // this._notification.showSuccess("Successfully Logged in", "SUCCESS");
-          // this._route.navigate(['/home']);
+          
+          const user = new User(data?.credentials?.email);
+          this._authService.user.next(user);
+          localStorage.setItem('user', JSON.stringify(user.email));
+          localStorage.setItem('blogData', JSON.stringify(data));
+          this._notification.showSuccess("Successfully Logged in", "SUCCESS");
+          this._route.navigate(['/blog']);
           this.isLoading=false;
         }
+        else {
+
+          this._notification.showError("Invalid Credentials...Please try again", "ERROR");
+          this.isLoading=false;
+        }
+        
+      
 
 
       },

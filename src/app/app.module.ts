@@ -8,7 +8,6 @@ import { HeaderComponent } from './dashboard/components/header/header.component'
 import { FooterComponent } from './dashboard/components/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './dashboard/screens/login/login.component';
-import { SignupComponent } from './dashboard/screens/signup/signup.component';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -52,20 +51,22 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
-import { WorkExperienceComponent } from './dashboard/screens/work-experience/work-experience.component';
 import { HttpClientModule } from '@angular/common/http';
-import { JobHistoryCardComponent } from './dashboard/screens/work-experience/job-history-card/job-history-card.component';
+
 import { ToastrModule } from 'ngx-toastr';
+import { BlogComponent } from './dashboard/screens/blog/blog.component';
+import { PrevBlogsComponent } from './dashboard/screens/blog/prev-blogs/prev-blogs.component';
+import { NotfoundComponent } from './dashboard/screens/notfound/notfound.component';
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HeaderComponent,
     LoginComponent,
-    SignupComponent,
     FooterComponent,
-    WorkExperienceComponent,
-    JobHistoryCardComponent
+    BlogComponent,
+    PrevBlogsComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,

@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BlogComponent } from './dashboard/screens/blog/blog.component';
 import { LoginComponent } from './dashboard/screens/login/login.component';
-import { SignupComponent } from './dashboard/screens/signup/signup.component';
-import { WorkExperienceComponent } from './dashboard/screens/work-experience/work-experience.component';
+import { NotfoundComponent } from './dashboard/screens/notfound/notfound.component';
 import { AuthGuard } from './dashboard/services/authGuard';
 
 
 const routes: Routes = [
   { path:"", redirectTo:"login", pathMatch:"full"},
   { path:"login", component:LoginComponent},
-  { path:"signup", component:SignupComponent},
-  { path:"home", component:WorkExperienceComponent, canActivate:[AuthGuard]}
+  { path:"blog", component:BlogComponent, canActivate:[AuthGuard]},
+  { path:"**", component:NotfoundComponent}
 ];
 
 @NgModule({

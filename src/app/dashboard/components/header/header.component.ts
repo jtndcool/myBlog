@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
       user=>{
         if(user){
           this.isLoggedIn = !!user;
-          this.loggedInUser = user.email_id;
+          this.loggedInUser = user.email;
         }
 
       }
