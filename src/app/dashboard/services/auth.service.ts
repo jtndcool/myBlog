@@ -18,7 +18,7 @@ export class AuthService {
   user = new BehaviorSubject<User>(null);
 
   login(payload:loginPayload) {
-    return this._http.post<any>(environment.baseUrl+'login',payload, {observe: 'response'}).pipe(timeout(5000),
+    return this._http.get<any>('../../../assets/data.json').pipe(timeout(5000),
 
       catchError(this.handleError)
     );
@@ -35,11 +35,11 @@ export class AuthService {
     return throwError("An unknown Error Occured");
   }
   autoLogin() {
-    const userInfo = JSON.parse(localStorage.getItem('user'));
-    if(!userInfo) {
-      return;
-    }
-    const user = new User(userInfo);
-    this.user.next(user);
+  // //  const userInfo = JSON.parse(localStorage.getItem('user'));
+  //   if(!userInfo) {
+  //     return;
+  //   }
+  //   const user = new User(userInfo);
+  //   this.user.next(user);
   }
 }

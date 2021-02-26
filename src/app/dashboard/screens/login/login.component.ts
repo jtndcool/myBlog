@@ -23,13 +23,13 @@ export class LoginComponent implements OnInit {
   constructor(private _authService:AuthService, private _route:Router, private _notification:NotificationService) { }
 
   ngOnInit(): void {
-    if(!!JSON.parse(localStorage.getItem('user'))) {
-      this._route.navigate(['/home']);
-    }
-    
+    // if(!!JSON.parse(localStorage.getItem('user'))) {
+    //   this._route.navigate(['/home']);
+    // }
+
   }
   onSubmit(form:NgForm) {
-   
+
     this.loginInfo = form.value;
 
     let loginObs: Observable<any>;
@@ -38,15 +38,16 @@ export class LoginComponent implements OnInit {
     loginObs.subscribe(
       data=>{
         if(data) {
-          const user = new User(data.email_id);
-          this._authService.user.next(user);
-          localStorage.setItem('user', JSON.stringify(user.email_id));
-          this._notification.showSuccess("Successfully Logged in", "SUCCESS");
-          this._route.navigate(['/home']);
+          console.log("---------------------", data);
+          // const user = new User(data.email_id);
+          // this._authService.user.next(user);
+          // localStorage.setItem('user', JSON.stringify(user.email_id));
+          // this._notification.showSuccess("Successfully Logged in", "SUCCESS");
+          // this._route.navigate(['/home']);
           this.isLoading=false;
         }
-        
-        
+
+
       },
       errorResp=>{
         console.log(errorResp);
