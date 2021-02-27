@@ -42,7 +42,14 @@ export class LoginComponent implements OnInit {
           const user = new User(data?.credentials?.email);
           this._authService.user.next(user);
           localStorage.setItem('user', JSON.stringify(user.email));
-          localStorage.setItem('blogData', JSON.stringify(data));
+
+          let prevBlog = JSON.parse(localStorage.getItem('blogData'));
+          console.log("prev data",prevBlog?.blog?.length>0)
+
+          if(prevBlog == undefined) {
+            localStorage.setItem('blogData', JSON.stringify(data));
+          }
+          
           this._notification.showSuccess("Successfully Logged in", "SUCCESS");
           this._route.navigate(['/blog']);
           this.isLoading=false;
