@@ -5,7 +5,7 @@ import { blog } from '../../models/blog';
 import { postWorkPayload } from '../../models/postWorkPayload';
 import { HttpService } from '../../services/http.service';
 import { NotificationService } from '../../services/notification.service';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',
@@ -18,6 +18,8 @@ export class BlogComponent implements OnInit {
   isLoading:boolean = false;
   currBlog:blog;
   toggleSort:Boolean =true;
+  editBlogData:any;
+  editBlogIndex:number;
   constructor(private _httpService:HttpService, private _notification:NotificationService) { }
 
   ngOnInit(): void {
@@ -89,6 +91,20 @@ export class BlogComponent implements OnInit {
    }
    this.toggleSort = !this.toggleSort;
   
+ }
+ editBlog(index:number) {
+        $('#editBlogButton').click();
+        this.editBlogData = this.previousBlogs[index]['paragraph'];
+        this.editBlogIndex = index;
+        console.log("edit is ", this.editBlogData);
+ }
+ saveEditedBlog() {
+  this.previousBlogs[this.editBlogIndex]['paragraph'] = this.editBlogData;
+  let blogInfo= JSON.parse(localStorage.getItem('blogData'));
+  blogInfo.blog = this.previousBlogs;
+  localStorage.setItem('blogData', JSON.stringify(blogInfo));
+  this._notification.showSuccess("Blog edtied successfully", "SUCCESS");
+  $('#closeModal').click();
  }
 
 }
